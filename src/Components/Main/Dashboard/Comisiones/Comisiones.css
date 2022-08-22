@@ -1,0 +1,32 @@
+#calcular:hover {
+  background-color: #ff9c04;
+  color: white;
+}
+
+#calcular:focus {
+    background-color: #ff9c04;
+    color: white;
+    box-shadow: #ff9c04 !important;
+  }
+
+#calcular {
+  margin-top: "3%";
+  background-color: #09294f;
+  color: white;
+  width: 110% !important;
+  border: 1px solid #09294f;
+}
+
+.contenedor{
+    text-align: center;
+}
+
+@media (max-width: 1299px){
+    #calcular{
+        width: 116% !important; 
+    }
+}
+
+.ag-header-group-text{
+  color: white;
+}

@@ -1,0 +1,108 @@
+#title {
+  text-align: center;
+}
+
+#btnEditar {
+  height: 67%;
+  margin-top: 13%;
+  border-radius: 7px;
+  width: 100%;
+}
+
+#btnRetarifar {
+  margin-left: 20% !important;
+  width: 100%;
+}
+
+#btnRecharge {
+  margin-top: 13%;
+  height: 67%;
+  border-radius: 7px;
+  width: 100%;
+}
+
+.ag-header-container {
+  background-color: #808080;
+}
+
+.ag-header-cell-label .ag-header-cell-text{
+  color: white;
+  font-size: 9pt;
+  white-space: normal !important;
+}
+
+#inputtrm::-webkit-outer-spin-button,
+#inputtrm::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+#inputtrm[type="number"] {
+  -moz-appearance: textfield !important;
+}
+
+.form-control:disabled, .form-control[readonly]{
+   background-color: white;
+}
+
+#btnCSV {
+  margin-top: 13%;
+  height: 67%;
+  border-radius: 7px;
+  width: 100%;
+}
+
+#selectMoney{
+  margin-top: 13%;
+}
+
+#btnCSV:hover {
+  background-color: #fe9604;
+  color: white;
+}
+
+#btnEditarBilling{
+  margin-left: 20% !important;
+  width: 100%;
+  height: 80%;
+  margin-top: 5%;
+}
+
+#btnChargueRTL{
+  margin-top: 17%;
+  height: 40px !important;
+  border-radius: 7px;
+}
+
+@media (min-width: 1400px) {
+
+  #btnEditar {
+    height: 67%;
+    margin-top: 10%;
+    border-radius: 7px;
+    width: 100%;
+  }
+  
+  #btnRecharge {
+    margin-top: 10%;
+    height: 67%;
+    border-radius: 7px;
+    width: 100%;
+  }
+
+  #btnCSV {
+    margin-top: 10%;
+    height: 67%;
+    border-radius: 7px;
+    width: 100%;
+  }
+  
+  #selectMoney{
+    margin-top: 10%;
+  }
+
+  #btnChargueRTL{
+    margin-top: 18%;
+    height: 45px !important;
+    border-radius: 7px;
+  }
+}

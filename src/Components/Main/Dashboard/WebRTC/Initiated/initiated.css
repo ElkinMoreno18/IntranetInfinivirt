@@ -1,0 +1,198 @@
+.headPhone {
+  height: 55px;
+  border-bottom: 2px solid #fe9501;
+  padding-bottom: 60px;
+}
+
+.icono {
+  background-color: #fe9501;
+  height: 40px;
+  width: 40px;
+  border-radius: 20%;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#iconoPhone {
+  width: 20px;
+  margin: auto;
+  padding-top: 10px;
+}
+
+#iconoSetting {
+  width: 40px;
+  margin-top: 10px;
+}
+
+#textCalls {
+  font-weight: 800;
+  font-family: lato;
+  font-size: 16pt;
+  height: 30px;
+  line-height: 40px;
+}
+
+.textCall {
+  margin-top: 10px;
+}
+
+.phoneNumber {
+  height: 50px;
+}
+
+.number {
+  border: none;
+  border-bottom: 3px solid #fe9501;
+  font-size: 13pt;
+}
+
+.number:focus {
+  outline: none;
+  box-shadow: none;
+  border-bottom: 3px solid #fe9501;
+}
+
+.digit {
+  font-size: 20pt;
+  font-weight: 600;
+  user-select: none;
+  cursor: pointer;
+  height: 50px;
+}
+
+.sub-digit {
+  font-size: 10pt;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+#btnCall {
+  background-image: url("https://www.turotel.com.mx/recursos/iconos/queretaro/phone-b.png");
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-position-x: 40%;
+  background-position-y: 50%;
+}
+
+.btnDelete {
+  background-color: white;
+  border: none;
+  border-bottom: 3px solid #fe9501;
+  font-size: 13pt;
+}
+
+.btnDelete:hover {
+  background-color: white;
+  color: black;
+  border-bottom: 3px solid #fe9501;
+}
+
+.btnDelete:focus {
+  background-color: white;
+  color: black;
+  outline: none;
+  box-shadow: none;
+  border-bottom: 3px solid #fe9501;
+}
+
+.ant-modal-content {
+  width: 90% !important;
+}
+
+#containerModal {
+  height: 100px !important;
+  overflow-y: auto !important;
+  width: 100%;
+}
+
+#btnCall {
+  font-weight: 700;
+}
+
+.icono {
+  background-color: #fe9501;
+  height: 40px;
+  width: 40px;
+  border-radius: 20%;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#iconoPhone {
+  width: 20px;
+  margin: auto;
+  padding-top: 10px;
+}
+
+#textCalls {
+  font-weight: 800;
+  font-family: lato;
+  font-size: 16pt;
+  height: 30px;
+  line-height: 40px;
+  color: white;
+}
+
+.textCall {
+  margin-top: 10px;
+}
+
+.subHeadPhone {
+  height: 140px;
+}
+
+#numberPhone {
+  color: white;
+  font-weight: bold;
+}
+
+#iconUserRTC {
+  width: 100px;
+  height: 70px;
+}
+
+#btnHang {
+  background-image: url("https://www.iconexperience.com/_img/m_collection_png/256x256/plain/phone_hang_up.png");
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-position-x: 35%;
+  background-position-y: 50%;
+}
+
+.acciones {
+  border: 1px solid white;
+  color: white;
+  width: 75%;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.acciones:active {
+  border: 1px solid #fe9501;
+  color: #fe9501;
+}
+
+.acciones:hover {
+  border: 1px solid #fe9501;
+  color: #fe9501;
+}
+
+.modifyWebRTC {
+  width: 940px !important;
+}
+
+#contenedor div:focus-visible {
+  outline: none;
+}
+
+#dialpad {
+  width: 50%;
+  margin: 0 auto;
+  background-color: #09294f;
+}
+
+.digitdial {
+  height: 30px;
+  cursor: pointer;
+  font-size: 15pt;
+}

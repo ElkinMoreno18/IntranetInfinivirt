@@ -1,0 +1,39 @@
+#tabs {
+  background-color: white;
+}
+
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+  max-width: 100%;
+  height: 100%;
+}
+
+.ant-modal-content {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+#btnTemplate {
+  height: 1cm;
+  margin-top: auto;
+  background-color: #09294f;
+  color: white;
+}
+
+#btnTemplate:hover {
+  background-color: #ff9c04;
+}
+
+#btnNuevo {
+  height: 1cm;
+  margin-top: auto;
+  background-color: #09294f;
+  color: white;
+}
+
+#btnNuevo:hover {
+  background-color: #ff9c04;
+}

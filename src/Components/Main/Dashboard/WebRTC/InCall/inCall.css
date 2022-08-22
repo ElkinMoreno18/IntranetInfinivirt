@@ -1,0 +1,65 @@
+.icono {
+  background-color: #fe9501;
+  height: 40px;
+  width: 40px;
+  border-radius: 20%;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#iconoPhone {
+  width: 20px;
+  margin: auto;
+  padding-top: 10px;
+}
+
+#textCalls {
+  font-weight: 800;
+  font-family: lato;
+  font-size: 16pt;
+  height: 30px;
+  line-height: 40px;
+  color: white;
+}
+
+.textCall {
+  margin-top: 10px;
+}
+
+.subHeadPhone{
+    height: 140px;
+}
+
+#numberPhone {
+    color: white;
+    font-weight: bold;
+}
+
+#iconUserRTC {
+  width: 100px;
+  height: 70px;
+}
+
+
+#btnHang{
+    background-image: url('https://www.iconexperience.com/_img/m_collection_png/256x256/plain/phone_hang_up.png');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position-x: 35%;
+    background-position-y: 50%;
+}
+
+.acciones{
+    border: 1px solid white;
+    color: white;
+}
+
+.acciones:focus{
+    border: 1px solid #fe9501;
+    color: #fe9501;
+}
+
+.acciones:hover{
+    border: 1px solid #fe9501;
+    color: #fe9501;
+}

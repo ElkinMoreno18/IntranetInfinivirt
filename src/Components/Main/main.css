@@ -1,0 +1,25 @@
+.trigger {
+    padding: 0 1%;
+    font-size: 140%;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .trigger:hover {
+    color: #ff9c04;
+  }
+  
+  .site-layout .site-layout-background {
+    background: #fff;
+  }
+
+#logout{
+  background-color: #ff9c04;
+  border: 1px solid #c1c1c1;
+  color: white
+}
+
+#logout:hover{
+  background-color: #09294f;
+}
+
