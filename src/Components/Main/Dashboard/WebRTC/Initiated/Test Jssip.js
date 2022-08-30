@@ -4,19 +4,18 @@ import ringing from './ringing.mp3'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import { Modal } from 'antd'
 import userIcon from '../InCall/userIcon.png'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'rsuite/dist/rsuite.min.css'
 import Timer from './Timer'
 import Icono from '../../../../../Resources/phoneIcon.png'
+import VoicemailIcon from '@mui/icons-material/Voicemail'
 import './initiated.css'
 import settings from '../../../../../Resources/config.ico'
 import JsSIP from 'jssip'
 import 'react-toastify/dist/ReactToastify.css'
 import { toast, ToastContainer } from 'react-toastify'
-import swal from 'sweetalert'
-import { useLayoutEffect } from 'react'
 
-export var call, ua
+export var call, ua, startTime, endTime, timeDiff
 export let session, sessionOld
 
 JsSIP.debug.enable('JsSIP:*')
@@ -90,6 +89,8 @@ function Initiated () {
 
   const AudioIn = new Audio(ringing)
   AudioIn.loop = true
+/*   const audio = new Audio(calling) // audio para llamar
+  audio.loop = true */
 
   const handleOk = () => setModalModify(false)
   const handleCancel = () => setModalModify(false)
@@ -186,17 +187,17 @@ function Initiated () {
   ///////////// JS SIP /////////////
 
   function register () {
-    var socket = new JsSIP.WebSocketInterface('wss://10.10.101.221:8089/ws')
+    var socket = new JsSIP.WebSocketInterface('wss://10.10.101.90:8089/ws')
     // var socket = new JsSIP.WebSocketInterface('wss://mybilling.infinivirt.com/webrtc/')
 
     var configuration = {
       sockets: [socket],
-      uri: 'sip:' + txtPublicId + '@10.10.101.221',
+      uri: 'sip:' + txtPublicId + '@10.10.101.90',
       password: txtPassword,
-      ws_servers: 'wss://10.10.101.221:8089/ws',
-      realm: '10.10.101.221',
+      ws_servers: 'wss://10.10.101.90:8089/ws',
+      realm: '10.10.101.90',
       display_name: txtDisplayName,
-      contact_uri: 'sip:' + txtPublicId + '@10.10.101.221',
+      contact_uri: 'sip:' + txtPublicId + '@10.10.101.90',
       user_agent: 'WebRTC Infinivirt'
     }
 
@@ -316,7 +317,7 @@ function Initiated () {
         setNumberPhone(session.remote_identity.display_name)
         setTxtInButton('Answer')
         setTxtCallIn('Incoming Call')
-      }
+      } 
 
       /* if (session.direction === 'outgoing') {
         console.log(e.request + ' outgoing session')
@@ -351,9 +352,11 @@ function Initiated () {
         console.log(data)
         setShowTimer(true)
         AudioIn.pause()
+        //audio.pause()
       })
       session.on('confirmed', data => {
         console.log(data)
+      //  audio.pause()
       })
       session.on('ended', data => {
         setNumberPhone('')
@@ -495,7 +498,7 @@ function Initiated () {
   function makeCall () {
     setShowDialPad(false)
 
-    call = ua.call('sip:' + numberPhone + '@10.10.101.221', options)
+    call = ua.call('sip:' + numberPhone + '@10.10.101.90', options)
     if (call) {
       call.connection.addEventListener('addstream', e => {
         var audio = document.createElement('audio')
@@ -543,7 +546,7 @@ function Initiated () {
     setShowDialPad(false)
     var numberTransfer = document.getElementById('numberTransfer').value
 
-    call = ua.call('sip:' + numberTransfer + '@10.10.101.221', options)
+    call = ua.call('sip:' + numberTransfer + '@10.10.101.90', options)
     if (call) {
       call.connection.addEventListener('addstream', e => {
         var audio = document.createElement('audio')
@@ -667,10 +670,10 @@ function Initiated () {
   function transfer () {
     var numberTransfer = document.getElementById('numberTransfer').value
     if (call) {
-      call.refer('sip:' + numberTransfer + '@10.10.101.221', options)
+      call.refer('sip:' + numberTransfer + '@10.10.101.90', options)
     }
     if (session) {
-      session.refer('sip:' + numberTransfer + '@10.10.101.221', options)
+      session.refer('sip:' + numberTransfer + '@10.10.101.90', options)
     }
     setVisibleNumberTransfer(false)
   }
@@ -761,8 +764,32 @@ function Initiated () {
                 <div
                   onClick={() => getNumber('1')}
                   className='button digit no-sub'
+                  id='voiceMailIcon'
+                  onMouseDown={() => {
+                    timeDiff = window.setTimeout(function () {
+                      call = ua.call('sip:*97@10.10.101.90', options)
+                      if (call) {
+                        call.connection.addEventListener('addstream', e => {
+                          var audio = document.createElement('audio')
+                          audio.srcObject = e.stream
+                          audio.play()
+                        })
+                        setAnsweredCall('calling')
+                        setNumberPhone('Buzon de Voz')
+                        setShowDialPad(false)
+                      }
+                    }, 1000)
+                    return false
+                  }}
+                  onMouseUp={() => {
+                    clearTimeout(timeDiff)
+                    return false
+                  }}
                 >
                   1
+                  <div className='sub-digit'>
+                    <VoicemailIcon fontSize='12pt' />
+                  </div>
                 </div>
               </div>
               <div className='col-4'>
@@ -1254,7 +1281,6 @@ function Initiated () {
               id='numberTransfer'
               type='tel'
             />
-            {console.log('visibleNumberTransfer', visibleNumberTransfer)}
             <button
               onClick={
                 visibleNumberTransfer === true ? transfer : makeCallForTransfer
