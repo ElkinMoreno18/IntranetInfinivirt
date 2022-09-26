@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import axios from 'axios'
 import './rtl.css'
@@ -729,7 +730,7 @@ class RTL extends React.Component {
     var filePath = this.state.file_path
     var request = '/api/files/deleteFile'
     this.gridApi.exportDataAsExcel()
-    axios.post(url_base + request, filePath).then(data => {})
+    axios.get(url_base + request, filePath).then(data => {})
   }
 
   onBtnUpdate = () => {
@@ -866,7 +867,7 @@ class RTL extends React.Component {
       currency = 'USD'
     }
 
-    swal('Retarificando, por favor espere')
+    swal('Modificando, por favor espere')
 
     var request = '/api/files/reRating'
 
@@ -883,7 +884,7 @@ class RTL extends React.Component {
         vendor
       })
       .then(res => {
-        swal('Retarificacion realizada con exito')
+        swal('Modificacion realizada con exito')
         this.setState({
           dataCSV: res.data.csv_data,
           file_path: res.data.file_path
@@ -957,7 +958,10 @@ class RTL extends React.Component {
       infoLogin.username === 'juanpablo.tejada' ||
       infoLogin.username === 'jacob.moritz' ||
       infoLogin.username === 'jesus.montoya' ||
-      infoLogin.username === 'elkin.moreno'
+      infoLogin.username === 'davison.canaveral' ||
+      infoLogin.username === 'sebastian.gomez' ||
+      infoLogin.username === 'manuela.calle' 
+     // infoLogin.username === 'elkin.moreno'
     ) {
       showColumns = this.state.columnDefsSuperAdmin
     } else if (infoLogin.username === 'jorge.arango') {
@@ -991,6 +995,7 @@ class RTL extends React.Component {
     }
 
     const tiers = [
+      { value: '', label: 'Seleccione' },
       { value: 'Tier 1', label: 'Tier 1' },
       { value: 'Tier 2', label: 'Tier 2' },
       { value: 'Tier 3', label: 'Tier 3' }
@@ -1002,11 +1007,13 @@ class RTL extends React.Component {
     ]
 
     const billing = [
+      { value: '', label: 'Seleccione' },
       { value: 1, label: 1 },
       { value: 60, label: 60 }
     ]
 
     const vendors = [
+      { value: '', label: 'Seleccione' },
       { value: 'Default', label: 'Default' },
       { value: 'Especial', label: 'Especial' }
     ]
@@ -1016,13 +1023,14 @@ class RTL extends React.Component {
       infoLogin.username === 'jacob.moritz' ||
       infoLogin.username === 'juanpablo.tejada' ||
       infoLogin.username === 'jorge.arango' ||
-      /*   infoLogin.username === 'maria.zapata' ||
+      infoLogin.username === 'maria.zapata' ||
       infoLogin.username === 'leidy.tangarife' ||
       infoLogin.username === 'andres.mesa' ||
       infoLogin.username === 'sergio.munoz' ||
-      infoLogin.username === 'sandra.ramos' ||
-       infoLogin.username === 'carolina.posada' || */
       infoLogin.username === 'jesus.montoya' ||
+      infoLogin.username === 'carolina.posada' ||
+      infoLogin.username === 'davison.canaveral' ||
+      infoLogin.username === 'sebastian.gomez' ||
       infoLogin.username === 'elkin.moreno'
     ) {
       return (
@@ -1087,7 +1095,7 @@ class RTL extends React.Component {
                 <div className='col-2'>
                   <label htmlFor='selectTier'>Tier</label>
                   <Select
-                    defaultValue={this.state.tier}
+                    defaultValue={tiers[0]}
                     id='selectTier'
                     name='selectTier'
                     options={tiers}
@@ -1119,6 +1127,13 @@ class RTL extends React.Component {
                         ? false
                         : true
                     }
+                    disabled={
+                      this.state.tier.length > 0 ||
+                      this.state.vendor.length > 0 ||
+                      this.state.valMin !== 0.007
+                        ? false
+                        : true
+                    }
                     onClick={() =>
                       this.sendForChangePercent(
                         this.state.pais,
@@ -1129,7 +1144,7 @@ class RTL extends React.Component {
                       )
                     }
                   >
-                    Retarifar
+                    Modificar
                   </button>
                 </div>
               </div>
@@ -1182,7 +1197,7 @@ class RTL extends React.Component {
                 <div className='col-2'>
                   <label htmlFor='selectDesGroup'>Initial Billing</label>
                   <Select
-                    defaultValue={this.state.initialBilling}
+                    defaultValue={billing[0]}
                     id='selectIniBilling'
                     name='selectIniBilling'
                     onChange={this.handleChangeIniBilling.bind(this)}
@@ -1193,7 +1208,7 @@ class RTL extends React.Component {
                 <div className='col-2'>
                   <label htmlFor='selectDesGroup'>Incremental Billing</label>
                   <Select
-                    defaultValue={this.state.incrementalBilling}
+                    defaultValue={billing[0]}
                     id='selectDesGroup'
                     name='selectDesGroup'
                     onChange={this.handleChangeIncrBilling.bind(this)}
@@ -1303,7 +1318,7 @@ class RTL extends React.Component {
                 id='btnRecharge'
                 onClick={() => this.updateTable()}
               >
-                Recargar
+                Actualizar
               </Button>
             </div>
           </div>

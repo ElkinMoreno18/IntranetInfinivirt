@@ -47,6 +47,8 @@ class App extends Component {
   sendDataLogin (ev) {
     const username = this.state.username.toLowerCase()
     const password = this.state.password
+    var request = '/api/session/login'
+
 
     var cipherTextPass = CryptoJS.AES.encrypt(
       password,
@@ -56,7 +58,6 @@ class App extends Component {
     let header = {
       withCredentials: true,
     }
-    var request = '/api/session/login'
 
     if (username === '' || password === '') {
       swal('Campos requeridos', 'Por favor, digite todos los campos', 'info')

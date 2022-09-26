@@ -136,49 +136,57 @@ class TableRow extends React.Component {
 
   sendData () {
     // Crear metodo de envio de informacion
-    const item = this.props.item
-    const representative = this.props.representative
-    const monthSalary = parseFloat(this.props.salarioMensual)
-    const pptoMensual = this.props.pptoMensual
-    const pptoAnual = parseFloat(this.props.pptoAnual)
-    var rol = this.props.rol
-    var presupuestoAn = 0
+    var infoLogin = this.props.infoLogin.username
+    if (
+      infoLogin === 'elkin.moreno' ||
+      infoLogin === 'jesus.montoya' ||
+      infoLogin === 'juanpablo.tejada' ||
+      infoLogin === 'ingry.marquez'
+    ) {
+      const item = this.props.item
+      const representative = this.props.representative
+      const monthSalary = parseFloat(this.props.salarioMensual)
+      const pptoMensual = this.props.pptoMensual
+      const pptoAnual = parseFloat(this.props.pptoAnual)
+      var rol = this.props.rol
+      var presupuestoAn = 0
 
-    if (representative === 'general') {
-      rol = 'general'
-      presupuestoAn = pptoAnual / 4
-    } else if (representative === 'Daniela') {
-      presupuestoAn = pptoAnual / 4
-    } else {
-      presupuestoAn = pptoAnual
-    }
+      if (representative === 'general') {
+        rol = 'general'
+        presupuestoAn = pptoAnual / 4
+      } else if (representative === 'Daniela') {
+        presupuestoAn = pptoAnual / 4
+      } else {
+        presupuestoAn = pptoAnual
+      }
 
-    var request = '/api/tests/' + item.month + '/' + representative
-    var info = {
-      months: item.month,
-      pptoVenta: item.pptoVenta,
-      VentaEjecutada: item.VentaEjecutada,
-      Cumplimiento: item.porcCumplimiento,
-      VentaActual: item.ClienteActual,
-      PorcentajeVentaActual: item.Porcentaje,
-      VentaNueva: item.ClienteNuevo,
-      PorcentajeVentaNueva: item.PorcentajeNuevo,
-      PresupuestoAcumulado: item.PresupuestoAcumulado,
-      ComisionAct: item.ComisionAct,
-      ComisionNue: item.ComisionNue,
-      salarioTotal: item.salarioTotal,
-      usuarioLogueado: 'prueba',
-      representante: representative,
-      monthSalary: monthSalary,
-      pptoMensual: pptoMensual,
-      pptoAnual: presupuestoAn,
-      rol: rol
-    }
-    axios.put(url_base + request, info).then(res => {
-      this.setState({
-        status: true
+      var request = '/api/tests/' + item.month + '/' + representative
+      var info = {
+        months: item.month,
+        pptoVenta: item.pptoVenta,
+        VentaEjecutada: item.VentaEjecutada,
+        Cumplimiento: item.porcCumplimiento,
+        VentaActual: item.ClienteActual,
+        PorcentajeVentaActual: item.Porcentaje,
+        VentaNueva: item.ClienteNuevo,
+        PorcentajeVentaNueva: item.PorcentajeNuevo,
+        PresupuestoAcumulado: item.PresupuestoAcumulado,
+        ComisionAct: item.ComisionAct,
+        ComisionNue: item.ComisionNue,
+        salarioTotal: item.salarioTotal,
+        usuarioLogueado: 'prueba',
+        representante: representative,
+        monthSalary: monthSalary,
+        pptoMensual: pptoMensual,
+        pptoAnual: presupuestoAn,
+        rol: rol
+      }
+      axios.put(url_base + request, info).then(res => {
+        this.setState({
+          status: true
+        })
       })
-    })
+    }
   }
 
   render () {
@@ -213,9 +221,9 @@ class TableRow extends React.Component {
     item.ComisionAct =
       item.ClienteActual * this.Percentages(item.porcCumplimiento, 'act', rol)
 
-      if (isNaN(item.ComisionAct)) {
-        item.ComisionAct = 0
-      }
+    if (isNaN(item.ComisionAct)) {
+      item.ComisionAct = 0
+    }
 
     item.ClienteNuevo = item.VentaEjecutada * item.PorcentajeNuevo
 
@@ -230,10 +238,8 @@ class TableRow extends React.Component {
       item.ComisionNue = 0
     }
 
-
     item.salarioTotal =
       item.ComisionAct + item.ComisionNue + parseInt(this.props.salarioMensual)
-
 
     if (itemAnterior === null && parseInt(item.month) === 2) {
       item.PresupuestoAcumulado = item.pptoVenta
@@ -259,7 +265,7 @@ class TableRow extends React.Component {
     var porcentajeCumpli = Math.round(item.porcCumplimiento * 100)
 
     var porcentajeActu = Math.round(item.Porcentaje * 100)
-   
+
     if (isNaN(porcentajeActu)) {
       porcentajeActu = 0
     }
@@ -280,9 +286,7 @@ class TableRow extends React.Component {
 
     var comiNuevaPesos = Math.trunc(item.ComisionNue).toLocaleString('es-CO')
 
-    
     var salarioPesos = Math.trunc(item.salarioTotal).toLocaleString('es-CO')
-
 
     ///////////////////////////////////////////////////////
 

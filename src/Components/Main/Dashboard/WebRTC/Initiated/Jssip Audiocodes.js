@@ -1,10 +1,11 @@
-/* eslint-disable no-undef */
+/* eslint-disable */
 import calling from './calling.mp3'
 import ringing from './ringing.mp3'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import { Modal } from 'antd'
 import userIcon from '../InCall/userIcon.png'
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import 'rsuite/dist/rsuite.min.css'
 import Timer from './Timer'
 import Icono from '../../../../../Resources/phoneIcon.png'
@@ -20,16 +21,21 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import CallEndIcon from '@mui/icons-material/CallEnd'
 import './initiated.css'
 import settings from '../../../../../Resources/config.ico'
-import JsSIP from 'jssip'
+import JsSIP from './jssip'
 import 'react-toastify/dist/ReactToastify.css'
 import { toast, ToastContainer } from 'react-toastify'
 
 export var call, ua, startTime, endTime, timeDiff
 export let session, sessionOld
 export var allSessionsActive = []
+//var WebSocketClient = require('websocket').client
+
 
 var primaryColor = process.env.REACT_APP_PRIMARY_COLOR
 var secondaryColor = process.env.REACT_APP_SECONDARY_COLOR
+
+//var client = new W3CWebSocket('ws://20.29.114.114')
+//var client = new WebSocketClient({ closeTimeout: 6000 })
 
 JsSIP.debug.enable('JsSIP:*')
 
@@ -66,16 +72,16 @@ var options = {
     offerToReceiveVideo: false
   },
   pcConfig: {
-    /*  iceServers: [
+      iceServers: [
       {
-        urls: ['stun:stun.l.google.com:19302', 'stun:stun1.l.google.com:19302']
+        urls: ['stun:stun.l.google.com:19302']
       },
-      {
+    /*  {
         urls: 'turn:192.158.29.39:3478?transport=udp',
         username: '28224511:1379330808',
         credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA='
-      }
-    ], */
+      }*/
+    ], 
     rtcpMuxPolicy: 'require'
   },
   sessionTimersExpires: 7200
@@ -130,6 +136,8 @@ function Initiated () {
 
   const handleOk = () => setModalModify(false)
   const handleCancel = () => setModalModify(false)
+
+
 
   function handleChangeHoverIn (idbtn) {
     setBtnHover(true)
@@ -239,6 +247,29 @@ function Initiated () {
   }
 
   function register () {
+
+    /* const config = {
+      headers: {
+        'Host': '20.29.114.114',
+          'Upgrade': 'websocket',
+          'Connection': 'Upgrade',
+          'Origin': '127.0.0.1',
+          'Sec-WebSocket-key': 'x3JJHMbDL1EzLkh9GBhXDw==',
+          'Sec-WebSocket-Origin': '20.29.114.114',
+          'Sec-WebSocket-Protocol': 'SIP',
+          'Sec-WebSocket-Version': '13'
+      }
+    }
+    axios
+      .get('http://20.29.114.114', config)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(error => {
+        console.log(error)
+      }) */
+
+
     ////////////////// WEB SOCKET ISSABEL webrtc.infinivirt.com ////////////
 
     //var socket = new JsSIP.WebSocketInterface('wss://webrtc.infinivirt.com:8089/ws')
@@ -252,12 +283,19 @@ function Initiated () {
     /* var socket = new JsSIP.WebSocketInterface(
       'wss://mybilling.infinivirt.com/webrtc/'
     ) */
-    var socket = new JsSIP.WebSocketInterface(
-         'wss://rtcsip.mybilling.net/wss'
-       ) 
 
 
-    socket.via_transport = 'UDP'
+   /*    var socket = new JsSIP.WebSocketInterface(
+       'wss://rtcsip.mybilling.net/wss'
+     )   */
+
+
+      console.log(JsSIP)
+      var socket = new JsSIP.WebSocketInterface(
+        'wss://10.10.101.51:1006/'
+      )  
+
+    //socket.via_transport = 'TLS'
 
     /////////////////////////// CONFIGURACION ISSABEL LOCAL //////////////
 
@@ -269,35 +307,35 @@ function Initiated () {
       realm: '10.10.101.90',
       display_name: txtDisplayName,
       contact_uri: 'sip:' + txtPublicId + '@10.10.101.90',
-      user_agent: 'WebRTC Infinivirt'
+      user_agent: 'WebRTC Infinivirt'  xochswv6 i]6/c9
     } */
 
     /////////////////////////// CONFIGURACION ISSABEL webrtc.infinivirt.com //////////////
 
-    /*    var configuration = {
-      sockets: [socket],
-      uri: 'sip:' + txtPublicId + '@181.143.18.50',
-      password: txtPassword,
-      ws_servers: 'wss://181.143.18.50:8089/ws',
-      realm: '181.143.18.50',
-      contact_uri: 'sip:' + txtPublicId + '@181.143.18.50',
-      display_name: txtDisplayName,
-      user_agent: 'WebRTC Infinivirt' xochswv6
-    } */
+     /*   var configuration = {
+       sockets: [socket],
+       uri: 'sip:' + txtPublicId + '@208.89.104.141',
+       password: txtPassword,
+     //  ws_servers: 'wss://rtcsip.mybilling.net/wss',
+     //  realm: '208.89.104.141',
+      // contact_uri: 'sip:' + txtPublicId + '@mybilling.infinivirt.com',
+       display_name: txtDisplayName,
+       user_agent: 'WebRTC Infinivirt' 
+     } */  
 
     /////////////////////////// CONFIGURACION ISSABEL TELINTA //////////////
 
-    var configuration = {
-         sockets: [socket],
-         uri: 'sip:' + txtPublicId + '@208.89.104.141',
-         password: txtPassword,
-         ws_servers: 'wss://rtcsip.mybilling.net/wss',
-         realm: '208.89.104.141',
-         contact_uri: 'sip:' + txtPublicId + '@mybilling.infinivirt.com',
-         display_name: txtDisplayName,
-         user_agent: 'WebRTC Infinivirt' 
-       }  
-
+       var configuration = {
+      sockets: [socket],
+      uri: 'sip:elkin.moreno@52.87.54.202',
+      password: 'Vamosverde18',
+     // ws_servers: 'wss://webrtc2.infinivirt.com:10081',
+      //realm: '20.29.114.114',
+      //contact_uri: 'sip:' + txtPublicId + '@20.29.114.114',
+      display_name: 'Test_Jesus_WebRTC',
+      user_agent: 'WebRTC Infinivirt'
+    }  
+ 
     //socket.via_transport='wss'
 
     /*   var configuration = {
@@ -397,7 +435,6 @@ function Initiated () {
       sessionOld = session
 
       allSessionsActive.push(e.session)
-
 
       if (session.direction === 'incoming') {
         AudioIn.play()
@@ -530,7 +567,7 @@ function Initiated () {
               'a=sendrecv\r\n'
               */
 
-        if (data.originator === 'local') {
+       /* if (data.originator === 'local') {
           data.sdp =
             'v=0\r\n' +
             'o=Infinivirt 1983 678902 IN IP4 208.89.104.142\r\n' +
@@ -541,8 +578,9 @@ function Initiated () {
             'a=rtpmap:8 PCMA/8000\r\n' +
             'a=ptime:20\r\n' +
             'a=fmtp:101 0-16\r\n' +
-            'a=sendrecv\r\n'
-   /* data.sdp =
+            'a=sendrecv\r\n' 
+            
+           data.sdp =
             'v=0\r\n' +
             'o=Infinivirt 1983 678902 IN IP4 181.143.18.50\r\n' +
             's=Infinivirt\r\n' +
@@ -554,14 +592,17 @@ function Initiated () {
             'a=fmtp:101 0-16\r\n' +
             'a=sendrecv\r\n'  */
 
-        //data.sdp = data.sdp.replace('UDP/TLS/RTP/SAVPF', 'RTP/AVP')
-        console.log(data.sdp)
-         }
-       /* if (data.originator === 'remote') {
+          //data.sdp = data.sdp.replace('UDP/TLS/RTP/SAVPF', 'RTP/AVP')
+       /* }
+         if (data.originator === 'remote') {
           data.sdp = data.sdp.replace('RTP/AVP', 'UDP/TLS/RTP/SAVPF')
           console.log(data.sdp)
         } */
 
+
+       // if(data.originator === 'remote'){
+         // data.sdp = data.sdp.replace('/^a=rtpmap:2 G726-32/8000\n/m', '')
+       // }
         // 'm=audio 51434 RTP/AVP 110 \n' +
 
         // data.sdp = data.sdp.replace('UDP/TLS/RTP/SAVPF', 'RTP/AVP')
@@ -592,9 +633,18 @@ function Initiated () {
     setModalModify(false)
   }
 
-  /* useEffect(() => {
+  useEffect(() => {
+
+    /* client.connect('ws//20.29.114.114/', 'echo-protocol')
+    client.onopen = () => {
+      console.log('WebSocket Client Connected');
+    };
+    client.onmessage = (message) => {
+      console.log(message);
+    }; */
+
     register()
-  }, []) */
+  }, []) 
 
   function unregister () {
     if (ua) {
@@ -777,9 +827,10 @@ function Initiated () {
 
   function transfer () {
     var numberTransfer = document.getElementById('numberTransfer').value
-    if (call) {
+    console.log(numberTransfer)
+  /*   if (call) {
       call.refer('sip:' + numberTransfer + '@208.89.104.141', options)
-    }
+    } */
     if (session) {
       session.refer('sip:' + numberTransfer + '@208.89.104.141', options)
     }

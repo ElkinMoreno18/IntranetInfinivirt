@@ -189,13 +189,13 @@ class Comisiones extends React.Component {
       infoLogin.username === 'leidy.tangarife' ||
       infoLogin.username === 'andres.mesa' ||
       infoLogin.username === 'sergio.munoz' ||
-      infoLogin.username === 'sandra.ramos' ||
       infoLogin.username === 'maria.zapata' ||
       infoLogin.username === 'ingry.marquez' ||
       infoLogin.username === 'juanpablo.tejada' ||
       infoLogin.username === 'jorge.arango' ||
       infoLogin.username === 'jesus.montoya' ||
       infoLogin.username === 'carolina.posada' ||
+      infoLogin.username === 'sebastian.gomez' ||
       infoLogin.username === 'elkin.moreno'
     ) {
       hidden = false
@@ -244,11 +244,12 @@ class Comisiones extends React.Component {
             <button
               onClick={this.showModalEditar}
               hidden={
-/*                 infoLogin.username === 'ingry.marquez' ||
-                infoLogin.username === 'juanpablo.tejada' ||
-                infoLogin.username === 'jacob.moritz' || */
+                /*                 infoLogin.username === 'ingry.marquez' ||
+                                infoLogin.username === 'juanpablo.tejada' ||
+                                infoLogin.username === 'jacob.moritz' || */
                 infoLogin.username === 'jesus.montoya' ||
                 infoLogin.username === 'davison.canaveral' ||
+                infoLogin.username === 'sebastian.gomez' ||
                 infoLogin.username === 'elkin.moreno'
                   ? false
                   : true
@@ -399,9 +400,7 @@ class Comisiones extends React.Component {
                   }}
                   name='selectRepresentante'
                 >
-                  <option hidden>
-                    Seleccione
-                  </option>
+                  <option hidden>Seleccione</option>
                   <option
                     hidden={
                       infoLogin.username === 'ingry.marquez' ||
@@ -410,6 +409,7 @@ class Comisiones extends React.Component {
                       infoLogin.username === 'juanpablo.tejada' ||
                       infoLogin.username === 'jesus.montoya' ||
                       infoLogin.username === 'davison.canaveral' ||
+                      infoLogin.username === 'sebastian.gomez' ||
                       infoLogin.username === 'elkin.moreno'
                         ? false
                         : true
@@ -420,7 +420,7 @@ class Comisiones extends React.Component {
                   </option>
                   <optgroup label='Vendedores'>
                     <option
-                      hidden={
+                       hidden={
                         (infoLogin.username === 'leidy.tangarife' ||
                           infoLogin.username === 'maria.zapata' ||
                           infoLogin.username === 'ingry.marquez' ||
@@ -429,6 +429,7 @@ class Comisiones extends React.Component {
                           infoLogin.username === 'elkin.moreno' ||
                           infoLogin.username === 'jesus.montoya' ||
                           infoLogin.username === 'davison.canaveral' ||
+                          infoLogin.username === 'sebastian.gomez' ||
                           infoLogin.username === 'jorge.arango') &&
                         hidden === false
                           ? false
@@ -439,7 +440,7 @@ class Comisiones extends React.Component {
                       Leidy tangarife
                     </option>
                     <option
-                      hidden={
+                       hidden={
                         (infoLogin.username === 'andres.mesa' ||
                           infoLogin.username === 'maria.zapata' ||
                           infoLogin.username === 'ingry.marquez' ||
@@ -448,6 +449,7 @@ class Comisiones extends React.Component {
                           infoLogin.username === 'juanpablo.tejada' ||
                           infoLogin.username === 'jesus.montoya' ||
                           infoLogin.username === 'davison.canaveral' ||
+                          infoLogin.username === 'sebastian.gomez' ||
                           infoLogin.username === 'jorge.arango') &&
                         hidden === false
                           ? false
@@ -467,6 +469,7 @@ class Comisiones extends React.Component {
                           infoLogin.username === 'juanpablo.tejada' ||
                           infoLogin.username === 'jesus.montoya' ||
                           infoLogin.username === 'davison.canaveral' ||
+                          infoLogin.username === 'sebastian.gomez' ||
                           infoLogin.username === 'jorge.arango') &&
                         hidden === false
                           ? false
@@ -478,25 +481,6 @@ class Comisiones extends React.Component {
                     </option>
                     <option
                       hidden={
-                        (infoLogin.username === 'sandra.ramos' ||
-                          infoLogin.username === 'maria.zapata' ||
-                          infoLogin.username === 'ingry.marquez' ||
-                          infoLogin.username === 'jacob.moritz' ||
-                          infoLogin.username === 'elkin.moreno' ||
-                          infoLogin.username === 'juanpablo.tejada' ||
-                          infoLogin.username === 'jesus.montoya' ||
-                          infoLogin.username === 'davison.canaveral' ||
-                          infoLogin.username === 'jorge.arango') &&
-                        hidden === false
-                          ? false
-                          : true
-                      }
-                      value='Sandra'
-                    >
-                      Sandra Ramos
-                    </option>
-                    <option
-                      hidden={
                         (infoLogin.username === 'carolina.posada' ||
                           infoLogin.username === 'ingry.marquez' ||
                           infoLogin.username === 'jacob.moritz' ||
@@ -504,6 +488,7 @@ class Comisiones extends React.Component {
                           infoLogin.username === 'juanpablo.tejada' ||
                           infoLogin.username === 'jesus.montoya' ||
                           infoLogin.username === 'davison.canaveral' ||
+                          infoLogin.username === 'sebastian.gomez' ||
                           infoLogin.username === 'jorge.arango') &&
                         hidden === false
                           ? false
@@ -523,6 +508,7 @@ class Comisiones extends React.Component {
                       infoLogin.username === 'juanpablo.tejada' ||
                       infoLogin.username === 'jesus.montoya' ||
                       infoLogin.username === 'davison.canaveral' ||
+                      infoLogin.username === 'sebastian.gomez' ||
                       (infoLogin.username === 'maria.zapata' &&
                         hidden === false)
                         ? false
@@ -531,7 +517,7 @@ class Comisiones extends React.Component {
                     label='Coordinadores'
                   >
                     <option
-                      hidden={
+                       hidden={
                         (infoLogin.username === 'maria.zapata' ||
                           infoLogin.username === 'ingry.marquez' ||
                           infoLogin.username === 'jacob.moritz' ||
@@ -539,6 +525,7 @@ class Comisiones extends React.Component {
                           infoLogin.username === 'juanpablo.tejada' ||
                           infoLogin.username === 'jesus.montoya' ||
                           infoLogin.username === 'davison.canaveral' ||
+                          infoLogin.username === 'sebastian.gomez' ||
                           infoLogin.username === 'jorge.arango') &&
                         hidden === false
                           ? false

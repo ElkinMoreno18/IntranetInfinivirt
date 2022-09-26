@@ -69,11 +69,6 @@ var options = {
     /*  iceServers: [
       {
         urls: ['stun:stun.l.google.com:19302', 'stun:stun1.l.google.com:19302']
-      },
-      {
-        urls: 'turn:192.158.29.39:3478?transport=udp',
-        username: '28224511:1379330808',
-        credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA='
       }
     ], */
     rtcpMuxPolicy: 'require'
@@ -148,12 +143,6 @@ function Initiated () {
 
   function getNumberDialPad (number) {
     setNumberDialPad(number)
-  }
-
-  function deleteLastNumber () {
-    var telephone = numberPhone
-    var subst = telephone.substring(0, telephone.length - 1)
-    setNumberPhone(subst)
   }
 
   function deleteLastNumber () {
@@ -252,10 +241,9 @@ function Initiated () {
     /* var socket = new JsSIP.WebSocketInterface(
       'wss://mybilling.infinivirt.com/webrtc/'
     ) */
-    var socket = new JsSIP.WebSocketInterface(
-         'wss://rtcsip.mybilling.net/wss'
-       ) 
-
+     var socket = new JsSIP.WebSocketInterface(
+      'ws://mybilling.infinivirt.com/webrtc/'
+    ) 
 
     socket.via_transport = 'UDP'
 
@@ -288,15 +276,15 @@ function Initiated () {
     /////////////////////////// CONFIGURACION ISSABEL TELINTA //////////////
 
     var configuration = {
-         sockets: [socket],
-         uri: 'sip:' + txtPublicId + '@208.89.104.141',
-         password: txtPassword,
-         ws_servers: 'wss://rtcsip.mybilling.net/wss',
-         realm: '208.89.104.141',
-         contact_uri: 'sip:' + txtPublicId + '@mybilling.infinivirt.com',
-         display_name: txtDisplayName,
-         user_agent: 'WebRTC Infinivirt' 
-       }  
+      sockets: [socket],
+      uri: 'sip:'+ txtPublicId + '@208.89.104.141',
+      password: txtPassword,
+      ws_servers: 'ws://mybilling.infinivirt.com/webrtc/',
+      realm: '208.89.104.141',
+      contact_uri: 'sip:'+ txtPublicId +'@208.89.104.141',
+      display_name: 'Test_Jesus_WebRTC',
+      user_agent: 'WebRTC Infinivirt'
+    }
 
     //socket.via_transport='wss'
 
@@ -398,6 +386,7 @@ function Initiated () {
 
       allSessionsActive.push(e.session)
 
+      console.log(allSessionsActive)
 
       if (session.direction === 'incoming') {
         AudioIn.play()
@@ -529,7 +518,6 @@ function Initiated () {
               'a=rtpmap:0 PCMU/8000/1\r\n' +
               'a=sendrecv\r\n'
               */
-
         if (data.originator === 'local') {
           data.sdp =
             'v=0\r\n' +
@@ -542,7 +530,8 @@ function Initiated () {
             'a=ptime:20\r\n' +
             'a=fmtp:101 0-16\r\n' +
             'a=sendrecv\r\n'
-   /* data.sdp =
+ 
+          /*   data.sdp =
             'v=0\r\n' +
             'o=Infinivirt 1983 678902 IN IP4 181.143.18.50\r\n' +
             's=Infinivirt\r\n' +
@@ -554,10 +543,10 @@ function Initiated () {
             'a=fmtp:101 0-16\r\n' +
             'a=sendrecv\r\n'  */
 
-        //data.sdp = data.sdp.replace('UDP/TLS/RTP/SAVPF', 'RTP/AVP')
-        console.log(data.sdp)
-         }
-       /* if (data.originator === 'remote') {
+          //data.sdp = data.sdp.replace('UDP/TLS/RTP/SAVPF', 'RTP/AVP')
+          console.log(data.sdp)
+        }
+        /* if (data.originator === 'remote') {
           data.sdp = data.sdp.replace('RTP/AVP', 'UDP/TLS/RTP/SAVPF')
           console.log(data.sdp)
         } */

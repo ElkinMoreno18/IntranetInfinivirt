@@ -9680,21 +9680,16 @@
                       Promise.resolve()
                         .then(function () {
                           return 'offer' === e
-                            ? r
-                                .createOffer(t)
-                                .catch(function (e) {
-                                  return (
-                                    w.warn(
-                                      'emit "peerconnection:createofferfailed" [error:%o]',
-                                      e
-                                    ),
-                                    n.emit(
-                                      'peerconnection:createofferfailed',
-                                      e
-                                    ),
-                                    Promise.reject(e)
-                                  )
-                                })
+                            ? r.createOffer(t).catch(function (e) {
+                                return (
+                                  w.warn(
+                                    'emit "peerconnection:createofferfailed" [error:%o]',
+                                    e
+                                  ),
+                                  n.emit('peerconnection:createofferfailed', e),
+                                  Promise.reject(e)
+                                )
+                              })
                             : r.createAnswer(t).catch(function (e) {
                                 return (
                                   w.warn(
@@ -9710,19 +9705,6 @@
                               })
                         })
                         .then(function (e) {
-                          console.log(e)
-                          /* e.sdp =  'v=0\r\n' +
-                          'o=Infinivirt 1983 678902 IN IP4 208.89.104.142\r\n' +
-                          's=Infinivirt\r\n' +
-                          'c=IN IP4 208.89.104.142\r\n' +
-                          't=0 0\r\n' +
-                          'm=audio 57592 RTP/AVP 8\r\n' +
-                          'a=rtpmap:8 PCMA/8000\r\n' +
-                          'a=ptime:20\r\n' +
-                          'a=fmtp:101 0-16\r\n' +
-                          'a=sendrecv\r\n' */
-                         // e.sdp = e.sdp.replace('UDP/TLS/RTP/SAVPF', 'RTP/AVP')
-                          console.log(e)
                           return r.setLocalDescription(e).catch(function (e) {
                             return (
                               (n._rtcReady = !0),
@@ -10387,7 +10369,6 @@
                                 return t._connection
                                   .createOffer(t._rtcOfferConstraints)
                                   .then(function (e) {
-                                    console.log(e)
                                     return t._connection.setLocalDescription(e)
                                   })
                                   .catch(function (n) {

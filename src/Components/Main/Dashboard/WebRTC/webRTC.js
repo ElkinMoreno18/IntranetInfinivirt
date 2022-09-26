@@ -1,4 +1,6 @@
 import TestJssip from './Initiated/Test Jssip'
+import JsSipAudiocodes from './Initiated/Jssip Audiocodes'
+import Initiated from './Initiated/initiated'
 import './webRTC.css'
 
 import React from 'react'
@@ -33,7 +35,7 @@ export default class webRTC extends React.Component {
             className='mx-auto mt-2 text-center contenedor col-10 col-sm-8 col-md-8 col-lg-6 col-xl-5 col-xxl-4'
             id='contenedor'
           >
-            <TestJssip getDataCall={this.getDataCall} />
+            <JsSipAudiocodes getDataCall={this.getDataCall} />
           </div>
         </div>
       </>

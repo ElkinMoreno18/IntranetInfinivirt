@@ -251,7 +251,6 @@ function Initiated ({ getDataCall }) {
   }
 
   function holdResume () {
-    console.log('------------------HOLDRESUME--------------')
     if (callSession) {
       var i_ret
       console.log('Resume call')
@@ -264,7 +263,6 @@ function Initiated ({ getDataCall }) {
   }
 
   function muted () {
-    console.log('------------------MUTED--------------')
     setMute(mute)
     callSession.mute('audio', mute)
   }

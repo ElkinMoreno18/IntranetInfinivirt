@@ -20,6 +20,7 @@ import {
   DollarOutlined,
   CalculatorOutlined,
   CloudServerOutlined,
+  PercentageOutlined
 } from '@ant-design/icons'
 
 const { SubMenu } = Menu
@@ -46,8 +47,8 @@ const MenuPage = props => {
     infoLogin.username === 'andres.mesa' ||
     infoLogin.username === 'sergio.munoz' ||
     infoLogin.username === 'carolina.posada' ||
-    infoLogin.username === 'sandra.ramos' ||
     infoLogin.username === 'maria.zapata' ||
+    infoLogin.username === 'manuela.calle' ||
     infoLogin.username === 'juanpablo.tejada' ||
     infoLogin.username === 'jorge.arango'
   ) {
@@ -63,13 +64,14 @@ const MenuPage = props => {
     infoLogin.username === 'jacob.moritz' ||
     infoLogin.username === 'elkin.moreno' ||
     infoLogin.username === 'jesus.montoya' ||
-    infoLogin.username === 'jorge.arango'
+    infoLogin.username === 'jorge.arango' ||
+    infoLogin.username === 'sebastian.gomez' ||
+    infoLogin.username === 'davison.canaveral'
   ) {
     showAll = true
   } else {
     showAll = false
   }
-  
 
   return (
     <>
@@ -138,7 +140,13 @@ const MenuPage = props => {
           Inventario de Activos
         </Menu.Item>
         <Menu.Item
-          hidden={hiddenComitions === false || showAll === true ? false : true}
+          hidden={
+            hiddenComitions === false ||
+            showAll === true ||
+            infoLogin.username === 'manuela.calle'
+              ? false
+              : true
+          }
           key='10'
           icon={<DollarOutlined />}
         >
@@ -146,7 +154,13 @@ const MenuPage = props => {
           Reporte de Comisiones
         </Menu.Item>
         <Menu.Item
-          hidden={showAll === true ? false : true}
+          hidden={
+            hiddenComitions === false ||
+            showAll === true ||
+            infoLogin.username === 'manuela.calle'
+              ? false
+              : true
+          }
           key='11'
           icon={<CalculatorOutlined />}
         >
@@ -166,6 +180,20 @@ const MenuPage = props => {
         >
           <Link to='/SBC' />
           KPI SBCs
+        </Menu.Item>
+        <Menu.Item
+          icon={<PercentageOutlined />}
+          key='13'
+          hidden={
+            showAll === true ||
+            infoLogin.username === 'juanpablo.tejada' ||
+            infoLogin.username === 'manuela.calle'
+              ? false
+              : true
+          }
+        >
+          CotizadorPyS
+          <Link to='/CotizadorPyS' />
         </Menu.Item>
       </Menu>
       {collapsed ? (

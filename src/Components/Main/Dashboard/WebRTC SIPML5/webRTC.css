@@ -1,0 +1,13 @@
+.container-fluid {
+  height: 100%;
+}
+
+#contenedor {
+  height: 500px !important;
+  padding: 0.8% 3%;
+  border: 1px solid black;
+  background-color: #09294f;
+  color: white;
+}
+
+

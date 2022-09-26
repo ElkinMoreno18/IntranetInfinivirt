@@ -8,7 +8,7 @@
 .container-sm,
 .container-xl {
   max-width: 100%;
-  height: 100%;
+  height: 90% !important;
 }
 
 .ant-modal-content {

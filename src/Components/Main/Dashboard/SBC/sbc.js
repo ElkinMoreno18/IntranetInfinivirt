@@ -2,6 +2,7 @@ import React from 'react'
 import LiquidFillGauge from 'react-liquid-gauge'
 import axios from 'axios'
 import Select from 'react-select'
+import swal from 'sweetalert'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css'
 import { Checkbox, Row, Col } from 'antd'
@@ -80,6 +81,8 @@ export default class SBC extends React.Component {
           this.setState({
             datosConsult: res.data
           })
+        }).catch(function(error) {
+          swal(error)
         })
     }
   }
@@ -98,6 +101,8 @@ export default class SBC extends React.Component {
       this.setState({
         datosDPBXMain: res.data
       })
+    }).catch(function(error) {
+      swal(error)
     })
   }
 
@@ -107,6 +112,8 @@ export default class SBC extends React.Component {
       this.setState({
         datosDPBXMedia: res.data
       })
+    }).catch(function(error) {
+      swal(error)
     })
   }
 
@@ -116,6 +123,8 @@ export default class SBC extends React.Component {
       this.setState({
         datosDPBXSystem: res.data
       })
+    }).catch(function(error) {
+      swal(error)
     })
   }
 
@@ -127,6 +136,8 @@ export default class SBC extends React.Component {
       this.setState({
         datosEDMain: res.data
       })
+    }).catch(function(error) {
+      swal(error)
     })
   }
 
@@ -136,6 +147,8 @@ export default class SBC extends React.Component {
       this.setState({
         datosEDMedia: res.data
       })
+    }).catch(function(error) {
+      swal(error)
     })
   }
 
@@ -145,6 +158,8 @@ export default class SBC extends React.Component {
       this.setState({
         datosEDSystem: res.data
       })
+    }).catch(function(error) {
+      swal(error)
     })
   }
 
@@ -154,6 +169,8 @@ export default class SBC extends React.Component {
       this.setState({
         datosEDNetwork: res.data
       })
+    }).catch(function(error) {
+      swal(error)
     })
   }
 
@@ -179,6 +196,8 @@ export default class SBC extends React.Component {
         this.setState({
           templates: res.data
         })
+      }).catch(function(error) {
+        swal(error)
       })
   }
 
@@ -194,6 +213,8 @@ export default class SBC extends React.Component {
         checkedValueMedia = res.data
         checkedValueNetwork = res.data
         checkedValueSystem = res.data
+      }).catch(function(error) {
+        swal(error)
       })
   }
 
@@ -206,6 +227,8 @@ export default class SBC extends React.Component {
       })
       .then(res => {
         console.log(res)
+      }).catch(function(error) {
+        swal(error)
       })
   }
 
@@ -268,6 +291,8 @@ export default class SBC extends React.Component {
       })
       .then(res => {
         console.log(res)
+      }).catch(function(error) {
+        swal(error)
       })
   }
 
